@@ -1,0 +1,42 @@
+/*
+Douglas Jones - 2286699 - COP2806
+*/
+/* 
+    Created on : Mar 28, 2016, 9:08:52 PM
+    Author     : DouglasJones
+*/
+
+body {
+    
+    text-align: center;
+}
+
+#page-wrap {
+  text-align: left;
+  width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+    
+}
+
+label {
+  
+    margin-bottom: .5em;
+    
+}
+
+input[type="text"], input[type="email"] {
+    width: 15em;
+    margin-bottom: .5em;
+    margin-left:  .5em;
+  
+}
+br {
+    clear: both;
+}
+
+#submit {
+    margin-left: .5em;
+}

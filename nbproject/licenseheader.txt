@@ -1,0 +1,7 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Douglas Jones - 2286699 - COP2806
+<#if licenseLast??>
+${licenseLast}
+</#if>
