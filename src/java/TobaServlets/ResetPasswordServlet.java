@@ -53,14 +53,14 @@ public class ResetPasswordServlet extends HttpServlet {
                 message = "ALL FIELDS MUST COMPLETED!";
                 url = "/resetPassword.jsp";
             }
-            
+            else {
            
-            else if (currentPassword.equals(password)){
+            if (currentPassword.equals(password)){
                 
                 if (confirmNewPassword.equals(newPassword)) {
                     message = null;
                     url = "/account_activity.html";
-                }
+                    }
                 else {
                     message = "Your new password submissions do not match. Please resubmit this form.";
                     url = "/resetPassword.jsp";
@@ -70,7 +70,8 @@ public class ResetPasswordServlet extends HttpServlet {
              else {
                     message = "Your current password does not match our records. Please resubmit this form.";
                     url = "/resetPassword.jsp";
-                  }        
+                  }  
+            }
             request.setAttribute("message", message);
             user.setPassword(newPassword);
           
