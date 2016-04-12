@@ -4,6 +4,7 @@
     Author     : DouglasJones
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,10 +19,14 @@
         <nav>
             <a href="index.html">Home</a> |
             <a href="login.html">Login</a> |
-            <a href="new_customer.jsp">New Customer Sign Up</a>
+            <a href="newCustomer.jsp">New Customer Sign Up</a>
         </nav>
         <p>Please complete the new customer application.</p>
-        <p><i>${message}</i></p>
+        
+        <c:if test="${message != null}"> 
+            <p><i>${message}</i></p>
+        </c:if>
+            
         <form action="newCustomer" method ="post">
             <input type="hidden" name="action" value="add">
             <label>First Name: </label>

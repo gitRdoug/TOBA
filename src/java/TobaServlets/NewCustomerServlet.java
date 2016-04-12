@@ -4,11 +4,13 @@
 package TobaServlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Beans.User;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,7 +22,7 @@ public class NewCustomerServlet extends HttpServlet {
                           HttpServletResponse response)
                           throws ServletException, IOException {
         
-        String url = "/new_customer.html";
+        String url = "/newCustomer.jsp";
         
         // get current action
         String action = request.getParameter("action");
@@ -31,7 +33,7 @@ public class NewCustomerServlet extends HttpServlet {
         
         //  perform action and set URL to appropriate page
         if (action.equals("invalid")) {
-            url = "/new_customer.html"; 
+            url = "/newCustomer.jsp"; 
         }
         
         else if (action.equals("add")) {
@@ -42,11 +44,15 @@ public class NewCustomerServlet extends HttpServlet {
             String address = request.getParameter("Address");
             String city = request.getParameter("City");
             String state = request.getParameter("State");
-            String zipCode = request.getParameter("ZipCose");
+            String zipCode = request.getParameter("ZipCode");
             String email = request.getParameter("Email");
-           
-            // validate the parameters
+            
+            // Create a User object with the input provided.
+            User user = new User(firstName, lastName, phone, address, city, state, zipCode, email);
             String message;
+            // validate the parameters
+           
+            
             if (firstName == null || firstName.isEmpty() || 
                 lastName == null || lastName.isEmpty() || 
                 phone == null || phone.isEmpty() ||    
@@ -57,13 +63,20 @@ public class NewCustomerServlet extends HttpServlet {
                 email == null || email.isEmpty()) {
                 
                 message = "ALL FIELDS MUST COMPLETED!";
-                url = "/new_customer.jsp";
+                url = "/newCustomer.jsp";
             
             }
             else {
-                message =  "";
-                url = "/account_activity.html";
+                message = null;
+                url = "/success.jsp";
+                
+            
+                
+               
             }
+            // Store the User object as a session attribute.
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
             request.setAttribute("message", message);
            
         }
