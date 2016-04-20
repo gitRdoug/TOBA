@@ -20,8 +20,8 @@ public class User implements Serializable {
     private String state;
     private String zipCode;
     private String email;
-    private String userName;
-    private String password;
+    public String userName;
+    public String password;
     
     // No argument constructor.
     public User() {

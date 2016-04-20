@@ -5,22 +5,11 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TOBA - New Customer</title>
-        <link rel="stylesheet" href="styles/main.css" type="text/css"/>
-        <meta charset="UTF-8">
-    </head>
+<c:import url="/header.html" />
     
     <body>
-        <header><h1>Titan Bank</h1></header>
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="login.html">Login</a> |
-            <a href="newCustomer.jsp">New Customer Sign Up</a>
-        </nav>
+        <header><h1>Titan Bank - New Customer</h1></header>
+        <c:import url="/navigation.html" />
         <p>Please complete the new customer application.</p>
         
         <c:if test="${message != null}"> 
@@ -47,7 +36,7 @@
             <input type="email" name="Email" ><br>
             <input type="submit" value="Submit">
         </form>
-        
+     <c:import url="/footer.jsp" />   
     </body>
        
 </html>

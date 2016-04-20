@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<!--
-Douglas Jones - 2286699 - COP2806
--->
-<html>
-    <head>
-        <title>TOBA - Success!!</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="/header.html" />
     <body>
-         <header><h1>Titan Bank</h1></header>
+         <header><h1>Titan Bank - Success</h1></header>
+         <c:import url="/navigation.html" />
         <div>Success - New Customer Account Created!</div>
         <p>Hello ${user.firstName}  ${user.lastName} </p>
         <p>Please review the information below.</p>
@@ -26,7 +19,7 @@ Douglas Jones - 2286699 - COP2806
         <form action="resetPassword.jsp">
             <input type="submit" value="Reset Password">
         </form>
-        
+        <c:import url="/footer.jsp" />   
         
     </body>
 </html>

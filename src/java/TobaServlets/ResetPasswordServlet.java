@@ -59,7 +59,7 @@ public class ResetPasswordServlet extends HttpServlet {
                 
                 if (confirmNewPassword.equals(newPassword)) {
                     message = null;
-                    url = "/account_activity.html";
+                    url = "/account_activity.jsp";
                     }
                 else {
                     message = "Your new password submissions do not match. Please resubmit this form.";
@@ -72,8 +72,12 @@ public class ResetPasswordServlet extends HttpServlet {
                     url = "/resetPassword.jsp";
                   }  
             }
+            // Set the message
             request.setAttribute("message", message);
+            // Update password for "user"
             user.setPassword(newPassword);
+            // Pass "user" back to the session with the password changes. 
+            session.setAttribute("user", user);
           
                     
             }

@@ -4,19 +4,11 @@
     Author     : DouglasJones
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
- <link rel="stylesheet" href="styles/main.css" type="text/css"/>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TOBA - Reset Password</title>
-    </head>
+<c:import url="/header.html" />
     <body>
-        <header><h2>Reset Password</h2></header>
-        
-       
+        <header><h1>Titan Bank - Reset Password</h1></header>
+        <c:import url="/navigation.html" />
+        <h2>Hello ${user.firstName}  ${user.lastName} </h2>
         <p><i>${message}</i></p>
         
         <form action="resetPassword" method="post" >
@@ -31,5 +23,6 @@
              <p></p>
             <input type="submit" value="Reset Password">
         </form>
+        <c:import url="/footer.jsp" />   
     </body>
 </html>

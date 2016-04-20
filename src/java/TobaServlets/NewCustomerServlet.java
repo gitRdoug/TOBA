@@ -47,8 +47,9 @@ public class NewCustomerServlet extends HttpServlet {
             String zipCode = request.getParameter("ZipCode");
             String email = request.getParameter("Email");
             
-            // Create a User object with the input provided.
-            User user = new User(firstName, lastName, phone, address, city, state, zipCode, email);
+           
+            HttpSession session = request.getSession();
+            // Create string object for the message.
             String message;
             // validate the parameters
            
@@ -62,21 +63,26 @@ public class NewCustomerServlet extends HttpServlet {
                 zipCode == null || zipCode.isEmpty() ||     
                 email == null || email.isEmpty()) {
                 
+                // set message 
                 message = "ALL FIELDS MUST COMPLETED!";
                 url = "/newCustomer.jsp";
             
             }
             else {
+                 // Create a User object with the validated input provided.
+                User user = new User(firstName, lastName, phone, address, city, state, zipCode, email);
+                // set message to null.
                 message = null;
                 url = "/success.jsp";
+                // Store the User object as a session attribute.
                 
-            
+                session.setAttribute("user", user);
+                
+                
                 
                
             }
-            // Store the User object as a session attribute.
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
+            // Set  message attribute
             request.setAttribute("message", message);
            
         }
