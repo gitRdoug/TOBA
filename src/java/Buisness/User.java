@@ -4,14 +4,23 @@
 package Buisness;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author DouglasJones
  */
+
+@Entity
 public class User implements Serializable {
     
     // Define user Proerties.
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long userId;
     private String firstName;
     private String lastName;
     private String phone;
@@ -22,9 +31,11 @@ public class User implements Serializable {
     private String email;
     public String userName;
     public String password;
+   
     
     // No argument constructor.
     public User() {
+        userId = null;
         firstName = "";
         lastName = "";
         phone = "";
@@ -37,9 +48,10 @@ public class User implements Serializable {
         password = "";
     }
     
-    // Constroctor
+    // Constructor
     public User(String firstName, String lastName, String phone, String address, 
             String city, String state, String zipCode, String email) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -53,6 +65,14 @@ public class User implements Serializable {
     }
     
     // Get and set methods for User properties.
+    public Long getUserId() {
+        return userId;
+    }
+    
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+    
     public String getFirstName() {
         return firstName;
     }
@@ -133,4 +153,5 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
