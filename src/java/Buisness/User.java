@@ -1,7 +1,7 @@
 /*
  * Douglas Jones - 2286699 - COP2806
  */
-package Beans;
+package Buisness;
 
 import java.io.Serializable;
 
