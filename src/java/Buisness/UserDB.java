@@ -11,12 +11,7 @@ import javax.persistence.Persistence;
 public class UserDB {
     
     public static void insert(User user) {
-        
-        EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("user");
-        
-        EntityManager em = emf.createEntityManager();
-        
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
@@ -30,4 +25,22 @@ public class UserDB {
         }
         
     }
+    
+    public static void update(User user) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try {
+            em.merge(user);
+            trans.commit();
+        } catch( Exception e) {
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+        
+    }
+    
+    
 }

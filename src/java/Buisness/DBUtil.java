@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 
 public class DBUtil {
         private static final EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("user");
+                Persistence.createEntityManagerFactory("userPU");
         
         public static EntityManagerFactory getEmFactory() {
             return emf;

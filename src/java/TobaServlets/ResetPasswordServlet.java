@@ -76,6 +76,8 @@ public class ResetPasswordServlet extends HttpServlet {
             request.setAttribute("message", message);
             // Update password for "user"
             user.setPassword(newPassword);
+            //Save Changes to DB.
+            Buisness.UserDB.update(user);
             // Pass "user" back to the session with the password changes. 
             session.setAttribute("user", user);
           
