@@ -31,21 +31,11 @@ public class User implements Serializable {
     private String email;
     public String userName;
     public String password;
-   
-    
-    // No argument constructor.
-    public User() {
-        userId = null;
-        firstName = "";
-        lastName = "";
-        phone = "";
-        address = "";
-        city = "";
-        state = "";
-        zipCode = "";
-        email = "";
-        userName = "";
-        password = "";
+    private Account checking;
+    private Account savings;
+
+   // No arg construstor
+    public User () {
     }
     
     // Constructor
@@ -62,6 +52,8 @@ public class User implements Serializable {
         this.email = email;
         this.userName = lastName + zipCode;
         this.password = "welcome1";
+        this.savings = new Account(this, 25.00, Account.AccountType.SAVINGS);
+        this.checking = new Account(this, 0.00, Account.AccountType.CHECKING);
     }
     
     // Get and set methods for User properties.

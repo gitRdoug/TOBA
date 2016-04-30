@@ -74,7 +74,7 @@ public class NewCustomerServlet extends HttpServlet {
                 // set message to null.
                 message = null;
                 url = "/success.jsp";
-                // Store the User object as a session attribute.
+                // Store the User object to the database.
                 Buisness.UserDB.insert(user);
                 //Set session user attribute
                 session.setAttribute("user", user);
