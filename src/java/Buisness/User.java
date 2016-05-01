@@ -5,8 +5,6 @@ package Buisness;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -19,7 +17,8 @@ public class User implements Serializable {
     
     // Define user Proerties.
     
-   
+     @Id
+    public String userName;
     private String firstName;
     private String lastName;
     private String phone;
@@ -28,8 +27,6 @@ public class User implements Serializable {
     private String state;
     private String zipCode;
     private String email;
-    @Id
-    public String userName;
     public String password;
    
 

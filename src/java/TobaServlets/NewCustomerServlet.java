@@ -80,11 +80,20 @@ public class NewCustomerServlet extends HttpServlet {
                 url = "/success.jsp";
                 // Store the User object and Accounts to the database.
                 Buisness.UserDB.insert(user);
-                Buisness.AccountDB.insert(checking);
-                Buisness.AccountDB.insert(savings);
+                
+                // Ive not been able to clear up 
+                // java.lang.IllegalStateException: 
+                // Exception Description: No transaction is currently active
+                
+                // So Ive commented out my code to move forward. 
+                
+                //Buisness.AccountDB.insert(checking);
+                //Buisness.AccountDB.insert(savings);
+                
                 //Set session user attribute
                 session.setAttribute("user", user);
-                
+                session.setAttribute("checking", checking);
+                session.setAttribute("savings", savings);
                
                 
                 

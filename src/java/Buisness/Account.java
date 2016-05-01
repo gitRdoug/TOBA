@@ -46,13 +46,13 @@ public class Account implements Serializable{
         this.balance = balance;   
     }
     
-    public double credit(double balance, double credit) {
-        balance = balance + credit;
+    public static double credit(double balance, double credit) {
+        balance += credit;
         return balance;
     }
     
-    public double debit(double balance, double debit) {
-        balance = balance - debit;
+    public static double debit(double balance, double debit) {
+        balance -= debit;
         return balance;
     } 
 }

@@ -19,8 +19,11 @@
         <form action="resetPassword.jsp">
             <input type="submit" value="Reset Password">
         </form>
-        <h3>Account Balances</h3>
-         
+        <h2>Account Balances</h2>
+        <h3>Checking: ${checking.balance} || Savings: ${savings.balance}</h3>
+        <form action="transaction.jsp">
+            <input type="submit" value="Transfer Funds">
+        </form>
     <c:import url="/footer.jsp" />   
     </body>
 </html>
