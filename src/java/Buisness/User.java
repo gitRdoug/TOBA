@@ -18,9 +18,8 @@ import javax.persistence.Id;
 public class User implements Serializable {
     
     // Define user Proerties.
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    
+   
     private String firstName;
     private String lastName;
     private String phone;
@@ -29,10 +28,10 @@ public class User implements Serializable {
     private String state;
     private String zipCode;
     private String email;
+    @Id
     public String userName;
     public String password;
-    private Account checking;
-    private Account savings;
+   
 
    // No arg construstor
     public User () {
@@ -41,7 +40,6 @@ public class User implements Serializable {
     // Constructor
     public User(String firstName, String lastName, String phone, String address, 
             String city, String state, String zipCode, String email) {
-        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -50,20 +48,11 @@ public class User implements Serializable {
         this.state = state;
         this.zipCode = zipCode;
         this.email = email;
-        this.userName = lastName + zipCode;
+        this.userName = lastName + firstName + phone;
         this.password = "welcome1";
-        this.savings = new Account(this, 25.00, Account.AccountType.SAVINGS);
-        this.checking = new Account(this, 0.00, Account.AccountType.CHECKING);
     }
     
     // Get and set methods for User properties.
-    public Long getUserId() {
-        return userId;
-    }
-    
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
     
     public String getFirstName() {
         return firstName;

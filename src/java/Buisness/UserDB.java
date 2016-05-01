@@ -4,14 +4,13 @@
 package Buisness;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
 public class UserDB {
     
     public static void insert(User user) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        // get transaction
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {

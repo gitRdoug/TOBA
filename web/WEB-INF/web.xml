@@ -5,7 +5,7 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <resource-ref>
         <description>DB COnnection</description>
-        <res-ref-name>jdbc/TestDB</res-ref-name>
+        <res-ref-name>jdbc/toba</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>

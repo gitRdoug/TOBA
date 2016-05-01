@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import Buisness.Account;
 import Buisness.User;
 import javax.servlet.http.HttpSession;
 
@@ -69,13 +69,19 @@ public class NewCustomerServlet extends HttpServlet {
             
             }
             else {
-                 // Create a User object with the validated input provided.
+                // Create a User object with the validated input provided.
                 User user = new User(firstName, lastName, phone, address, city, state, zipCode, email);
+                // Create new accounts for the user
+                Account checking = new Account(user, 0.00, Account.AccountType.CHECKING);
+                
+                Account savings = new Account(user, 25.00, Account.AccountType.SAVINGS);
                 // set message to null.
                 message = null;
                 url = "/success.jsp";
-                // Store the User object to the database.
+                // Store the User object and Accounts to the database.
                 Buisness.UserDB.insert(user);
+                Buisness.AccountDB.insert(checking);
+                Buisness.AccountDB.insert(savings);
                 //Set session user attribute
                 session.setAttribute("user", user);
                 
