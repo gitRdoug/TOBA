@@ -4,4 +4,8 @@
             maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/toba" 
             username="root" password="sesame" type="javax.sql.DataSource"
             url="jdbc:mysql://localhost:3306/toba" />
+    <Realm className="org.apach.catalina.realm.DataSourceRealm" debug="99"
+  dataSourceName="jdbc/Toba" localDataSource="true"
+  userTable="UserPass" userNameCol="UserName" userCredCol="password"
+  userRoleTable="UserRole" roleNameCOl="RoleName" />        
 </Context>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+Douglas Jones - 2286699 - COP2806
+-->
+<html>
+    <head>
+        <title>TOBA - Titan Online Banking</title>
+  
+        <link rel="stylesheet" href="\web\styles" type="text/css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+    <body>
+        <header><h1>Titan Bank - Administrator Login</h1></header>
+        <nav>
+            <a href="index.jsp">Home</a> |
+            <a href="login.jsp">Login</a> |
+            <a href="newCustomer.jsp">New Customer Sign Up</a>
+        </nav>
+        <p></p>
+        <form action="login" method ="post">
+            <input type="hidden" name="action" value="login">
+            <label>Username: </label>
+            <input type="text" name="username" required><br>
+            <label>Password: </label>
+            <input type="password" name="password" required>
+            <input type="submit" value="Submit">
+        </form>
+        
+        
+    </body>
+</html>

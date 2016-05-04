@@ -9,3 +9,4 @@
     int currentYear = currentDate.get(Calendar.YEAR);
 %>
 <p>&copy; Copyright <%= currentYear %> Douglas Jones Web Applications</p>
+<a href="admin/login.html">Administrator Login</a>
