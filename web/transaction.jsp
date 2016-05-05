@@ -19,7 +19,7 @@
         <p>====================================================</p>
         <h2>Transfer Funds from Savings to Checking</h2>
          <p><i>${message}</i></p>
-         <form action="transfer" method="post" >
+         <form action="transaction" method="post" >
             <input type="hidden" name="action" value="toChecking">
             <label>Transfer Amount: </label>
             <input type="double" name="amount" >

@@ -5,7 +5,10 @@ package Buisness;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Account implements Serializable{
@@ -14,7 +17,13 @@ public class Account implements Serializable{
     
     private AccountType accountType;
     
-    @Id
+    @Id 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int accountId;
+
+   
+   
+  
     private User user;
     
     private double balance;
@@ -24,11 +33,20 @@ public class Account implements Serializable{
     }
    
     public Account(User user, double balance, AccountType accountType ) {
+        this.accountId = accountId;
         this.user = user;
         this.balance = balance;
         this.accountType = accountType;
     }
     
+    
+     public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
     public AccountType getAccountType() {
         return accountType;
         
@@ -46,13 +64,11 @@ public class Account implements Serializable{
         this.balance = balance;   
     }
     
-    public static double credit(double balance, double credit) {
+    public void credit(double credit) {
         balance += credit;
-        return balance;
     }
     
-    public static double debit(double balance, double debit) {
+    public void debit(double debit) {
         balance -= debit;
-        return balance;
     } 
 }

@@ -3,18 +3,36 @@
  */
 package TobaServlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
+import Buisness.DBUtil;
+import Buisness.User;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author DouglasJones
  */
 public class ReportsServlet extends HttpServlet {
+    
+    public static List<User> buildAdminReport() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT i from toba.User i" + 
+                        "WHERE i.isProcessed = 'n'";
+        TypedQuery<User> q  = em.createQuery(qString, Buisness.User.class);
+        
+        List<User> users;
+        try {
+             users = q.getResultList();
+             if (users == null || users.isEmpty())
+                    users= null;
+             
+        } finally {
+            em.close();
+        }
+        return users;
+    }  
 
     
 }

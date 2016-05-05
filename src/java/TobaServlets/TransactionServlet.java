@@ -45,29 +45,31 @@ public class TransactionServlet extends HttpServlet {
             Account checking = (Account) session.getAttribute("checking");
             Account savings = (Account) session.getAttribute("savings");
             
-           
-            
             // Create string object for the message.
             String message = null;
             
             
-            if (transferAmount < 0) {
-                message = "Please enter a value greater than 0.";
+            if (transferAmount <= 0) {
+                message = "Please enter an amount to tranfer.";
                 url = "/transaction.jsp";
             }
             
             else {
-                if (action.equals("toSavings") && transferAmount <= checking.getBalance()) {
-                    checking.setBalance(Account.debit(checking.getBalance(), transferAmount)); 
-                    savings.setBalance(Account.credit(savings.getBalance(), transferAmount));
+                if (action.equals("toSavings")) {
+                    checking.debit(transferAmount); 
+                    savings.credit(transferAmount);
                 }
-                else if(action.equals("toChecking") && transferAmount <= savings.getBalance()) {
-                    checking.setBalance(Account.credit(checking.getBalance(), transferAmount)); 
-                    savings.setBalance(Account.debit(savings.getBalance(), transferAmount));
+                else if(action.equals("toChecking")) {
+                    checking.credit(transferAmount); 
+                    savings.debit(transferAmount);
                 }
-                
+                //Update the seesion attributes
                 session.setAttribute("checking", checking);
                 session.setAttribute("savings", savings);
+                // Save the acount changes to the db
+                Buisness.AccountDB.update(checking);
+                Buisness.AccountDB.update(savings);
+                message = "Your funds have been Transfered";
                 url = "/account_activity.jsp";
                 
                 
@@ -77,8 +79,6 @@ public class TransactionServlet extends HttpServlet {
            
         
         }
-         getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request,response);
+        getServletContext().getRequestDispatcher(url).forward(request,response);
     } 
 }

@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Buisness.User;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -52,34 +55,37 @@ public class ResetPasswordServlet extends HttpServlet {
                 
                 message = "ALL FIELDS MUST COMPLETED!";
                 url = "/resetPassword.jsp";
-            }
+                }
             else {
            
-            if (currentPassword.equals(password)){
+                 if (currentPassword.equals(password)){
                 
-                if (confirmNewPassword.equals(newPassword)) {
-                    message = null;
-                    url = "/account_activity.jsp";
-                    }
+                    if (confirmNewPassword.equals(newPassword)) {
+                        message = null;
+                        url = "/account_activity.jsp";
+                    
+                        //Hash and salt password.
+                        String salt = Buisness.PasswordUtil.getSalt();
+                        user.setSalt(salt);
+                        String hashedSaltedPassword = (newPassword + salt);
+                        user.setPassword(hashedSaltedPassword);
+                        session.setAttribute("user", user);
+                        Buisness.UserDB.update(user);
+                        }
+                        
+                    
+                    else {
+                          message = "Your new password submissions do not match. Please resubmit this form.";
+                          url = "/resetPassword.jsp";
+                        }
+                 }
+                
                 else {
-                    message = "Your new password submissions do not match. Please resubmit this form.";
-                    url = "/resetPassword.jsp";
-                    }
-             }
-                
-             else {
-                    message = "Your current password does not match our records. Please resubmit this form.";
-                    url = "/resetPassword.jsp";
-                  }  
-            }
-            // Set the message
-            request.setAttribute("message", message);
-            // Update password for "user"
-            user.setPassword(newPassword);
-            //Save Changes to DB.
-            Buisness.UserDB.update(user);
-            // Pass "user" back to the session with the password changes. 
-            session.setAttribute("user", user);
+                        message = "Your current password does not match our records. Please resubmit this form.";
+                     url = "/resetPassword.jsp";
+                      }  
+                 }
+           
           
                     
             }

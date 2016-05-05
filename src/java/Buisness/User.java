@@ -3,7 +3,11 @@
  */
 package Buisness;
 
+import TobaServlets.NewCustomerServlet;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -18,7 +22,7 @@ public class User implements Serializable {
     // Define user Proerties.
     
      @Id
-    public String userName;
+    private String userName;
     private String firstName;
     private String lastName;
     private String phone;
@@ -27,7 +31,10 @@ public class User implements Serializable {
     private String state;
     private String zipCode;
     private String email;
-    public String password;
+    private String password;
+    private String salt;
+    
+   
    
 
    // No arg construstor
@@ -36,7 +43,7 @@ public class User implements Serializable {
     
     // Constructor
     public User(String firstName, String lastName, String phone, String address, 
-            String city, String state, String zipCode, String email) {
+            String city, String state, String zipCode, String email, String password) throws NoSuchAlgorithmException {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -45,9 +52,13 @@ public class User implements Serializable {
         this.state = state;
         this.zipCode = zipCode;
         this.email = email;
+        this.salt = PasswordUtil.getSalt();
+        this.password = PasswordUtil.hashPassword(password + this.salt);
         this.userName = lastName + firstName + phone;
-        this.password = "welcome1";
+        
     }
+
+   
     
     // Get and set methods for User properties.
     
@@ -131,5 +142,11 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+     public String getSalt() {
+        return salt;
+    }
 
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 }

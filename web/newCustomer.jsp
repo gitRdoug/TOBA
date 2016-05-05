@@ -34,6 +34,9 @@
             <input type="text" name="ZipCode"><br>
              <label>Email: </label>
             <input type="email" name="Email" ><br>
+            <label>Password: </label>
+            <input type="text" name="Password" ><br>
+            
             <input type="submit" value="Submit">
         </form>
      <c:import url="/footer.jsp" />   

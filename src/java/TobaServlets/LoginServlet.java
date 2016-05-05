@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
     public static String validateCredentials(String username, String password, User user) {
             String url;
             if (username.equals("jsmith@toba.com") && password.equals("letmein") ||
-                username.equals(user.userName) && password.equals(user.password)) {
+                username.equals(user.getUserName()) && password.equals(user.getPassword())) {
                 url = "/account_activity.jsp";
             }
             else {

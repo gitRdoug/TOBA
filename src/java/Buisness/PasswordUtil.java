@@ -38,8 +38,12 @@ public class PasswordUtil {
     public static String hashAndSaltPassword(String password) 
             throws NoSuchAlgorithmException {
         String salt = getSalt();
+        // call saltDB()
         return hashPassword(password + salt);
     }
+    
+    // Save the salt in salts table along with the userName as the primary key.
+    
     
     
 }

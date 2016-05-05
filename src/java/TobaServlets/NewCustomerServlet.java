@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Buisness.Account;
 import Buisness.User;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -20,7 +23,7 @@ public class NewCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
-                          throws ServletException, IOException {
+                          throws ServletException, IOException{
         
         String url = "/newCustomer.jsp";
         
@@ -46,6 +49,7 @@ public class NewCustomerServlet extends HttpServlet {
             String state = request.getParameter("State");
             String zipCode = request.getParameter("ZipCode");
             String email = request.getParameter("Email");
+            String password = request.getParameter("Password");
             
            
             HttpSession session = request.getSession();
@@ -61,7 +65,9 @@ public class NewCustomerServlet extends HttpServlet {
                 city == null || city.isEmpty() ||     
                 state == null || state.isEmpty() ||    
                 zipCode == null || zipCode.isEmpty() ||     
-                email == null || email.isEmpty()) {
+                email == null || email.isEmpty() ||
+                password == null || password.isEmpty())    
+                 {
                 
                 // set message 
                 message = "ALL FIELDS MUST COMPLETED!";
@@ -69,8 +75,15 @@ public class NewCustomerServlet extends HttpServlet {
             
             }
             else {
+                
                 // Create a User object with the validated input provided.
-                User user = new User(firstName, lastName, phone, address, city, state, zipCode, email);
+                User user = null;
+                
+                try {
+                    user = new User(firstName, lastName, phone, address, city, state, zipCode, email, password);
+                } catch (NoSuchAlgorithmException ex) {
+                    Logger.getLogger(NewCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 // Create new accounts for the user
                 Account checking = new Account(user, 0.00, Account.AccountType.CHECKING);
                 
@@ -87,8 +100,8 @@ public class NewCustomerServlet extends HttpServlet {
                 
                 // So Ive commented out my code to move forward. 
                 
-                //Buisness.AccountDB.insert(checking);
-                //Buisness.AccountDB.insert(savings);
+                Buisness.AccountDB.insert(checking);
+                Buisness.AccountDB.insert(savings);
                 
                 //Set session user attribute
                 session.setAttribute("user", user);
